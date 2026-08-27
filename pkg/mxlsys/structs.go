@@ -13,7 +13,7 @@ type CommonFlowConfigInfo struct {
 	MaxCommitBatchSizeHint uint32
 	MaxSyncBatchSizeHint   uint32
 	PayloadLocation        uint32
-	DeviceIndex            uint32
+	DeviceIndex            int32 // -1 if the payload is located in host memory
 	Reserved               [72]byte
 }
 

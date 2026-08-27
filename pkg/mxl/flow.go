@@ -136,7 +136,7 @@ func (d *FlowDefinition) GetGroupHint() (*GroupHint, error) {
 	}
 
 	return &GroupHint{
-		Name: strings.Join(parts[:len(parts)-1], ""),
+		Name: strings.Join(parts[:len(parts)-1], ":"),
 		Type: parts[len(parts)-1],
 	}, nil
 }
@@ -165,7 +165,7 @@ func Open(domain string, id string) (*Flow, error) {
 }
 
 func (f *Flow) Close() error {
-	return f.mm.Unmap()
+	return errors.Join(f.mm.Unmap(), f.fd.Close())
 }
 
 func (f *Flow) IsValid() bool {

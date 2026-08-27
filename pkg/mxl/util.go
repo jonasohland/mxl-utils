@@ -18,8 +18,11 @@ func GetFlowIDFromPath(path string) (string, bool) {
 		return "", false
 	}
 
-	_, err := uuid.Parse(id)
-	return id, err == nil
+	if _, err := uuid.Parse(id); err != nil {
+		return "", false
+	}
+
+	return id, true
 }
 
 func IsFlowDir(path string) bool {

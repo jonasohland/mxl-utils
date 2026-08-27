@@ -115,6 +115,8 @@ func (w *Watcher) remove(path string) {
 }
 
 func (w *Watcher) run(ctx context.Context) {
+	defer func() { _ = w.notify.Close() }()
+
 	for {
 		select {
 		case <-time.After(4 * time.Second):
