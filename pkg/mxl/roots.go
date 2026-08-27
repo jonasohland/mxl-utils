@@ -16,7 +16,7 @@ var (
 	ErrFSNotFound = errors.New("no root filesystem found for domain")
 )
 
-type FilesytemReceiver interface {
+type FilesystemReceiver interface {
 	AddFilesystem(path string)
 	UpdateFilesystem(path string, domains []string)
 	RemoveFilesystem(path string)
@@ -25,7 +25,7 @@ type FilesytemReceiver interface {
 type FilesystemDiscoverer struct {
 	mu    sync.Mutex
 	roots map[string][]string
-	recv  []FilesytemReceiver
+	recv  []FilesystemReceiver
 
 	// Resolves the filesystem a domain lives on. Only ever replaced in tests.
 	resolve func(domain string) (string, error)
@@ -93,7 +93,7 @@ func findDomainFilesystem(domain string) (string, error) {
 	return longestMatchingMountPath(domain, mounts)
 }
 
-func NewFilesystemDiscoverer(recv []FilesytemReceiver) *FilesystemDiscoverer {
+func NewFilesystemDiscoverer(recv []FilesystemReceiver) *FilesystemDiscoverer {
 	return &FilesystemDiscoverer{
 		mu:      sync.Mutex{},
 		roots:   map[string][]string{},

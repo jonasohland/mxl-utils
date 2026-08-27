@@ -115,7 +115,7 @@ type FlowDefinition struct {
 	FrameHeight   *int                `json:"frame_height,omitempty"`
 	InterlaceMode string              `json:"interlace_mode,omitempty"`
 	Colorspace    string              `json:"colorspace,omitempty"`
-	Componenets   []Component         `json:"components,omitempty"`
+	Components    []Component         `json:"components,omitempty"`
 	ChannelCount  *int                `json:"channel_count,omitempty"`
 	BitDepth      *int                `json:"bit_depth,omitempty"`
 }

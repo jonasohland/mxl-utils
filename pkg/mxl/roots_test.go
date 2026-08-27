@@ -80,7 +80,7 @@ func TestFindDomainFilesystem(t *testing.T) {
 // Builds a filesystem discoverer that resolves domains through a fixed table
 // instead of the mount table of the host.
 func newTestFilesystemDiscoverer(recv *recorder, resolve map[string]string) *FilesystemDiscoverer {
-	fd := NewFilesystemDiscoverer([]FilesytemReceiver{recv})
+	fd := NewFilesystemDiscoverer([]FilesystemReceiver{recv})
 	fd.resolve = func(domain string) (string, error) {
 		path, ok := resolve[domain]
 		if !ok {
